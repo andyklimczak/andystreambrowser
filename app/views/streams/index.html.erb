@@ -1,0 +1,22 @@
+<style>
+* { font-family:sans-serif;}
+.box { padding: 1em; border:5px; background:#F1F1F1;}
+tr { font-size:xx-small; border:3px solid black;}
+</style>
+<body bgcolor=#262626>
+<div class="box">
+<h1 align="center">Andy's Stream Browser</h1> 
+<hr color="purple">
+<%= will_paginate @stream_list %>
+<p class="all" align="center"> 
+<tr>
+	<% @stream_list.each do |key| %>
+		<% stream = Twitch.streams.get(key) %>
+		<td><%=link_to image_tag("#{stream.preview_url}"), stream.channel.url %></td>
+	<% end %>
+</tr>
+</p>
+<%= will_paginate @stream_list %>
+<hr color="purple">
+</div>
+</body>
