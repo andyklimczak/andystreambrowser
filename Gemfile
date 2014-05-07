@@ -32,6 +32,8 @@ gem 'kappa', '~> 1.0'
 ## Gemfile for Rails 3, Rails 4, Sinatra, and Merb
 gem 'will_paginate', '~> 3.0'
 
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
