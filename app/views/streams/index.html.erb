@@ -12,11 +12,9 @@ body { background-color:#262626;}
 <%= will_paginate @stream_list %>
 <p class="all" align="center"> 
 	<tr>
-	<% @stream_list.each do |key| %>
-		<% stream = Twitch.streams.get(key) %>
-		<td>
-		<%=link_to image_tag("#{stream.preview_url}"), stream.channel.url %>
-		</td>
+	<% @stream_list.each do |stream_name| %>
+		<% s = Twitch.streams.get(stream_name) %>
+		<%= link_to image_tag("#{s.preview_url}"), s.channel.url %>
 	<% end %>
 	</tr>
 </p>

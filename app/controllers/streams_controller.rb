@@ -1,31 +1,49 @@
 class StreamsController < ApplicationController
 	require 'will_paginate/array' #required in order for will_paginate to paginate an array instead of an active record
   def index
-  	@stream_list = sorted_list_of_streams
-	@stream_list = @stream_list.paginate(page: params[:page], per_page:4)
-  end
-  
-  private
-  #returns an array of [twitch_names] that are ordered by their viewer count
-  def sorted_list_of_streams
-  	sorted_stream_list = []
-	game_map = sorted_tuple_of_streams_by_viewer
-	game_map.each do |stream_name, viewer_count|
-		sorted_stream_list.push(stream_name)
-	end
-	return sorted_stream_list
+    number_of_streams = 36
+    @stream_list ||= []
+    @user_game_filter ||= []
+    #if the user is not signed in, show all games
+    unless user_signed_in?
+      #make a list of unique stream names that are sorted by viewer count, ignoring game
+      Twitch.streams.all(limit:number_of_streams) do |stream|
+        @stream_list.push(stream.channel.name)
+      end
+    #if the user is signed in, only show the games that they have a preference for
+    else
+      @stream_list = logged_in_stream_list(number_of_streams)
+    end
+	@stream_list = @stream_list.paginate(page: params[:page], per_page:12)
   end
 
-  #returns an array tuple [twitch_name, viewer_count] sorted by the viewer count
-  def sorted_tuple_of_streams_by_viewer
-  	game_map = Hash.new
-  	games = Twitch.games.top(limit:2)
-  	games.each do |game|
-		game.streams(limit:4).each do |stream|
-			game_map[stream.channel.display_name] = stream.viewer_count
-		end
-	end
-	stream_tuple = game_map.sort_by {|k,v| v}.reverse #map turns into an array here
-	return stream_tuple
+private 
+  def logged_in_stream_list number_of_streams
+    #when filtering streams, find how many are ignored
+    filter_counter = get_correct_number_of_streams(number_of_streams)
+
+    temp_filter_stream_list = []
+    #get current user stream list
+    user = User.find(current_user)
+    @user_game_filter = user.games
+    @user_game_filter = @user_game_filter.collect{|x| x.strip.chomp}
+    
+    Twitch.streams.all(limit:(number_of_streams+filter_counter)) do |stream|
+      unless @user_game_filter.include?(stream.game_name)
+        temp_filter_stream_list.push(stream.channel.name)
+      end 
+    end
+
+    return temp_filter_stream_list
+  end
+
+  def get_correct_number_of_streams number_of_streams
+    count = 0
+    Twitch.streams.all(limit:number_of_streams) do |stream|
+      if @user_game_filter.include?(stream.game_name)
+        count = filter_counter + 1
+      end 
+    end
+    return count
   end
 end

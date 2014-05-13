@@ -2,7 +2,25 @@
 <div class="container">
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav navbar-right">
-	<li><button class="btn btn-default">Sign In</button></li>
+	<% if user_signed_in? %>
+		<li>
+		<% user_email = user = User.find(current_user).email %>
+		<%= link_to edit_user_registration_path do %>
+			<button class="btn btn-default"%> <%= user_email %></button>
+		<% end %>
+		</li>
+		<li>
+		<%= link_to destroy_user_session_path, :method => :delete do %> 
+			<button class="btn btn-default">Logout</button>
+		<% end %>
+		</li>
+			<% else %>
+		<li> 
+		<%= link_to new_user_session_path do %>
+			<button class="btn btn-default">Login</button>
+		<% end %>
+		</li>
+	<% end %>
 </ul>
 </div>
 </div>

@@ -1,3 +1,8 @@
+<style>
+.game_preferences { display:inline-block;}
+.games { display:inline-block; }
+</style>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -11,17 +16,26 @@
 
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-<div>
-	<%= f.label :game_list_preferences %><br />
-	<% Twitch.games.top(limit:10).each do |game| %>
-		&nbsp&nbsp&nbsp&nbsp&nbsp
-		<%= f.check_box game.name%>
-		<%= f.label game.name, game.name %>
-		<br />
-	<% end %>
-</div>
 
-  <div><%= f.submit "Sign up" %></div>
+	<div class="game_preferences">
+    <p><%= f.label :games %> <strong>Filter</strong><small> (seperate by comma)</small><br />
+<!--    <%= f.text_area :games, size: '26x10'%></p>
+  </div>
+  <div class="games">
+    <p><small><strong>Example games:</strong><br>
+    <% Twitch.games.top(limit:10).each do |game| %>
+      <%= game.name %><br />
+    <% end %></small></p>
+-->
+  <% game_list = [] %>
+  <% Twitch.games.top(limit:20).each do |game| %>
+    <% game_list.push(game.name) %>
+  <% end %>
+  <% game_list.sort! %>
+  <%= f.select :games, game_list, {}, {:multiple => true, :size => 12 } %>
+  </div>
+
+ <br /> <div><%= f.submit "Sign up", :class =>"btn btn-success" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
