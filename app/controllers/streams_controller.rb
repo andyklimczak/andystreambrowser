@@ -1,7 +1,7 @@
 class StreamsController < ApplicationController
 	require 'will_paginate/array' #required in order for will_paginate to paginate an array instead of an active record
   def index
-    number_of_streams = 36
+    number_of_streams = 48
     @stream_list ||= []
     @user_game_filter ||= []
     #if the user is not signed in, show all games

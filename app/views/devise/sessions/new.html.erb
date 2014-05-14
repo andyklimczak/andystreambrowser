@@ -1,13 +1,13 @@
 <style>
 * { font-family:sans-serif;}
-.box { padding: 10px; border:10px; margin:10px; background:#F1F1F1;}
+.box { padding: 10px; border:10px; margin:50px; background:#F1F1F1;}
 hr { border-color:#6441A5;border-collapse: collapse;}
 body { background-color:#262626;}
 </style>
 <%= render 'layouts/header' %>
-<body>
-<div class="box">
-<h2>Sign in</h2>
+<body="img-rounded">
+<div class="box img-rounded">
+<h2 align="center">Login</h2>
 <hr color=#6441A5>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class:"form-group"><%= f.label :email %><br />
@@ -23,6 +23,5 @@ body { background-color:#262626;}
   <div><%= f.submit "Sign in", class: "btn btn-default" %></div>
 <% end %>
 <hr color=#6441A5>
-<%= render "devise/shared/links" %>
 </div>
 </body>

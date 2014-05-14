@@ -2,14 +2,14 @@
 .game_preferences { display:inline-block;}
 .games { display:inline-block; }
 * { font-family:sans-serif;}
-.box { padding: 10px; border:10px; margin:10px; background:#F1F1F1;}
+.box { padding: 10px; border:10px; margin:50px; background:#F1F1F1;}
 hr { border-color:#6441A5;border-collapse: collapse;}
 body { background-color:#262626;}
 </style>
 <%= render 'layouts/header' %>
 <body>
-<div class="box">
-<h2>Sign up</h2>
+<div class="box img-rounded">
+<h2 align="center">Register</h2>
 <hr color=#6441A5>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>

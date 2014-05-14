@@ -2,14 +2,14 @@
 .game_preferences { display:inline-block;}
 .games { display:inline-block; }
 * { font-family:sans-serif;}
-.box { padding: 10px; border:10px; margin:10px; background:#F1F1F1;}
+.box { padding: 10px; border:10px; margin:50px; background:#F1F1F1;}
 hr { border-color:#6441A5;border-collapse: collapse;}
 body { background-color:#262626;}
 </style>
 <%= render 'layouts/header' %>
 <body>
-<div class="box">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="box img-rounded">
+<h2 align="center">Edit <%= resource_name.to_s.humanize %></h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -43,9 +43,9 @@ body { background-color:#262626;}
 <% end %>
 
 <hr color=#6441A5>
-<h3>Cancel my account</h3>
+<h4>Delete Account</h3>
 
-<p><%= button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
+<p><%= button_to "Remove My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %></p>
 
 <hr color=#6441A5>
 </div>

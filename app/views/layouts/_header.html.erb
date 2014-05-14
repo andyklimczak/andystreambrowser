@@ -22,6 +22,11 @@
 		<% end %>
 		</li>
 			<% else %>
+		<li>
+			<%= link_to new_user_registration_path do %>
+			<button class="btn btn-default">Register</button>
+		<% end %>
+		</li>
 		<li> 
 		<%= link_to new_user_session_path do %>
 			<button class="btn btn-default">Login</button>
