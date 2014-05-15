@@ -39,10 +39,9 @@ group :development, :test do
 end
 
 #heroku specific stuff
-group :production do
-	gem 'rails_12factor'
-	gem 'pg'
-end
+gem 'rails_12factor'
+gem 'pg'
+
 ruby "2.1.1"
 
 # Use ActiveModel has_secure_password
