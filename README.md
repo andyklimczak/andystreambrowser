@@ -26,6 +26,8 @@ Pagination was rather straight forward to add. Page size is small to help with l
 
 I've had some familiarity with bootstrap used for a past class project. I applied as many simple bootstrap 'tricks' as I could throughout the pages, but because the pages are so minimal, not much I could add.
 
+Bootstrap specific things are: the header on all pages, the various buttons on pages, the rounded of the main div shown on each page, and the look of the form fields.
+
 ## unit tests (rspec)
 
 I have two simple set of tests (spec/controllers/streams_controller_spec.rb & spec/models/user_spec.rb) that test the basic functionality of the pages and interactions. 
