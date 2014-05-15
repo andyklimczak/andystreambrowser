@@ -20,7 +20,7 @@ The games are presented in a multiselect element in the user registration/edit v
 
 ## paging (will_paginate)
 
-Pagination was rather straight forward to add to the page. Calling these GETS by virtual box took a little while, so that is why the page size is so small.
+Pagination was rather straight forward to add. Page size is small to help with loading of the main page.
 
 ## user interface (bootstrap)
 
