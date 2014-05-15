@@ -4,10 +4,12 @@ class StreamsController < ApplicationController
     number_of_streams = 48
     @stream_list ||= []
     @user_game_filter ||= []
+    #store a bunch of streams, to speed up the page and lower the number of total calls
+    @streams = Twitch.streams
     #if the user is not signed in, show all games
     unless user_signed_in?
       #make a list of unique stream names that are sorted by viewer count, ignoring game
-      Twitch.streams.all(limit:number_of_streams) do |stream|
+      @streams.all(limit:number_of_streams).each do |stream|
         @stream_list.push(stream.channel.name)
       end
     #if the user is signed in, only show the games that they have a preference for
@@ -19,7 +21,7 @@ class StreamsController < ApplicationController
     #this is used in the view
     @stream_preview_and_url_list ||= []
     @stream_list.each do |stream_name|
-      s = Twitch.streams.get(stream_name)
+      s = @streams.get(stream_name)
       @stream_preview_and_url_list.push([s.preview_url, s.channel.url])
     end
 
@@ -37,7 +39,7 @@ private
     @user_game_filter = user.games
     @user_game_filter = @user_game_filter.collect{|x| x.strip.chomp}
     
-    Twitch.streams.all(limit:(number_of_streams+filter_counter)) do |stream|
+    @streams.all(limit:number_of_streams).each do |stream|
       unless @user_game_filter.include?(stream.game_name)
         temp_filter_stream_list.push(stream.channel.name)
       end 
@@ -47,7 +49,7 @@ private
 
   def get_correct_number_of_streams number_of_streams
     count = 0
-    Twitch.streams.all(limit:number_of_streams) do |stream|
+    @streams.all(limit:number_of_streams).each do |stream|
       if @user_game_filter.include?(stream.game_name)
         count = filter_counter + 1
       end 
