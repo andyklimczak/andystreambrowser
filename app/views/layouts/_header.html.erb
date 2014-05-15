@@ -4,7 +4,7 @@
 <ul class="nav navbar-nav navbar-left">
 	<li>
 		<%= link_to "/" do %>
-			<button class="btn btn-default"%><font color=#B9A3E3> Home</font> </button>
+			<button class="btn btn-default"%> Home</button>
 		<% end %>
 	</li>
 </ul>
@@ -13,12 +13,12 @@
 		<li>
 		<% user_email = user = User.find(current_user).email %>
 		<%= link_to edit_user_registration_path do %>
-			<button class="btn btn-default"%><font color=#B9A3E3> <%= user_email %></font></button>
+			<button class="btn btn-default"%><%= user_email %></button>
 		<% end %>
 		</li>
 		<li>
 		<%= link_to destroy_user_session_path, :method => :delete do %> 
-			<button class="btn btn-default"><font color=#B9A3E3>Logout</font></button>
+			<button class="btn btn-default">Logout</button>
 		<% end %>
 		</li>
 			<% else %>
