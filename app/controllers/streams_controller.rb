@@ -1,7 +1,7 @@
 class StreamsController < ApplicationController
 	require 'will_paginate/array' #required in order for will_paginate to paginate an array instead of an active record
   def index
-    number_of_streams = 48
+    number_of_streams = 36
     @stream_list ||= []
     @user_game_filter ||= []
     #if the user is not signed in, show all games
@@ -14,7 +14,16 @@ class StreamsController < ApplicationController
     else
       @stream_list = logged_in_stream_list(number_of_streams)
     end
-	@stream_list = @stream_list.paginate(page: params[:page], per_page:16)
+
+    #now that we have the stream names, get the stream preview and url
+    #this is used in the view
+    @stream_preview_and_url_list ||= []
+    @stream_list.each do |stream_name|
+      s = Twitch.streams.get(stream_name)
+      @stream_preview_and_url_list.push([s.preview_url, s.channel.url])
+    end
+
+	@stream_preview_and_url_list = @stream_preview_and_url_list.paginate(page: params[:page], per_page:12)
   end
 
 private 

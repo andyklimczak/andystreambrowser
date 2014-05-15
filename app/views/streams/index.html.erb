@@ -9,16 +9,15 @@ body { background-color:#262626;}
 <div class="box img-rounded">
 <h1 align="center">Andy's Stream Browser</h1> 
 <hr color=#6441A5>
-<%= will_paginate @stream_list %>
+<%= will_paginate @stream_preview_and_url_list%>
 <p class="all" align="center"> 
 	<tr>
-	<% @stream_list.each do |stream_name| %>
-		<% s = Twitch.streams.get(stream_name) %>
-		<%= link_to image_tag("#{s.preview_url}"), s.channel.url %>
+	<% @stream_preview_and_url_list.each do |stream_preview, stream_url| %>
+		<%= link_to image_tag("#{stream_preview}"), stream_url %>
 	<% end %>
 	</tr>
 </p>
-<%= will_paginate @stream_list %>
+<%= will_paginate @stream_preview_and_url_list%>
 <hr color=#6441A5>
 </div>
 </body>
