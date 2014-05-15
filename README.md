@@ -8,7 +8,7 @@ This website allows you to browse streams in a visual format, where streams are 
 
 On the website, Twitch allows you to browse streams by game, where streams are sorted by viewer count. It also allows you to see all of the top streams by viewer for all games. But it does not allow you to filter top streams by game. So with this, you can filter out specific streams of a particular game that you don't want to see in the top streams. This is because some streams of particular games are always popular, and not seeing these streams might be preferred.
 
-## api
+## [twitch kappa api](https://github.com/schmich/kappa)
 
 I use the Twitch 'Kappa' rails api in order to access Twitch stream/channel information. 
 
@@ -25,6 +25,8 @@ Pagination was rather straight forward to add. Page size is small to help with l
 ## user interface (bootstrap)
 
 I've had some familiarity with bootstrap used for a past class project. I applied as many simple bootstrap 'tricks' as I could throughout the pages, but because the pages are so minimal, not much I could add.
+
+Bootstrap specific things are: the header on all pages, the various buttons on pages, the rounded of the main div shown on each page, and the look of the form fields.
 
 ## unit tests (rspec)
 
