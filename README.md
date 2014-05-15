@@ -6,9 +6,7 @@ heroku link: http://blooming-springs-7203.herokuapp.com/
 
 This website allows you to browse streams in a visual format, where streams are sorted by viewer, irregardless of game.
 
-On the website, Twitch allows you to browse streams by game, where games are sorted by viewer count. But there is not a way to view all streams by viewer count irregradless of games. So this is aimed toward users who want to see what are the most popular current live streams on Twitch. 
-
-Registration allows for users to filter out games, that they always want to not see.
+On the website, Twitch allows you to browse streams by game, where games are sorted by viewer count. It also allows you to see all of the top streams by viewer. But it does not allow you to filter top streams by game. So with this, you can filter out specific streams of a particular game that you don't want to see in the top streams. This is because some games are always near the top, and avoiding those streams might be preferred.
 
 ## api
 
@@ -26,9 +24,7 @@ Pagination was rather straight forward to add to the page. Calling these GETS by
 
 ## user interface (bootstrap)
 
-I've had some familiarity with bootstrap used for a past class project. I applied as many simple bootstrap 'tricks' as I could throughout the pages, but because the pages are so minimal, not much I could add I feel.
-
-Also, my use of bootstrap and interesting html design is lacking, so I need to learn more about that.
+I've had some familiarity with bootstrap used for a past class project. I applied as many simple bootstrap 'tricks' as I could throughout the pages, but because the pages are so minimal, not much I could add.
 
 ## unit tests (rspec)
 
