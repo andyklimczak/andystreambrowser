@@ -20,7 +20,7 @@ Devise is used to handle authentication. I customized the model and added a ':ga
 
 The games are presented in a multiselect element in the user registration/edit views. I initially tried using checkbox elements, but that would use too much screen space trying to present 100 games with associated checkboxes. Then I decided to use a simple text field, where each game would be entered by the user and seperated by a comma. This worked, but was not user friendly. Then I figured out how to use multiple select boxes.
 
-## Paging (will_paginate)
+## paging (will_paginate)
 
 Pagination was rather straight forward to add to the page. Calling these GETS by virtual box took a little while, so that is why the page size is so small.
 
@@ -33,3 +33,13 @@ Also, my use of bootstrap and interesting html design is lacking, so I need to l
 ## unit tests (rspec)
 
 I have two simple set of tests (spec/controllers/streams_controller_spec.rb & spec/models/user_spec.rb) that test the basic functionality of the pages and interactions. 
+
+# bugs
+
+* Main page loads really, really slow. I think it's because of the number of images though?
+
+# todo
+
+* get the user's twitch username and have the user's subscriptions and following streams at the top. Twitch doesn't do anything like this on their homepage yet
+* allow user to change the number of total streams, streams per page
+* better tests
