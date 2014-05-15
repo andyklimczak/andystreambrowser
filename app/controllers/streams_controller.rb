@@ -14,7 +14,7 @@ class StreamsController < ApplicationController
     else
       @stream_list = logged_in_stream_list(number_of_streams)
     end
-	@stream_list = @stream_list.paginate(page: params[:page], per_page:12)
+	@stream_list = @stream_list.paginate(page: params[:page], per_page:16)
   end
 
 private 
@@ -33,7 +33,6 @@ private
         temp_filter_stream_list.push(stream.channel.name)
       end 
     end
-
     return temp_filter_stream_list
   end
 

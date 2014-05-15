@@ -4,8 +4,21 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+# one: {}
 # column: value
 #
-two: {}
+# two: {}
 #  column: value
+
+#create 3 users
+test1:
+    email: test1@abc.com
+    games: ["Dota 2", "Minecraft"]
+
+test3:
+    email: test2@abc.com
+    games: ["League Of Legends", "Call of Duty: Black Ops II"]
+
+test3:
+    email: test3@abc.com
+    games: ["Borderlands 2", "Hearthstone: Heroes of Warcraft"]
