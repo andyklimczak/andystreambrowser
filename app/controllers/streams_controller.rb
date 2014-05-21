@@ -14,7 +14,18 @@ class StreamsController < ApplicationController
       end
     #if the user is signed in, only show the games that they have a preference for
     else
-      @stream_list = logged_in_stream_list(number_of_streams)
+      user = User.find(current_user)
+      @user_game_filter = user.games
+      #get the user's game preferences
+      @user_game_filter = @user_game_filter.collect{|x| x.strip.chomp}
+
+      #add streams that are not filtered by the user's preference until the size of the stream_list equals number_of_streams
+      @streams.all(limit:number_of_streams*5).each do |stream|
+        unless @user_game_filter.include?(stream.game_name)
+          @stream_list.push(stream.channel.name)
+        end
+        break if @stream_list.length >= number_of_streams #this ensures that the same number of streams will be shown when logged in and logged out
+      end
     end
 
     #now that we have the stream names, get the stream preview and url
@@ -25,35 +36,7 @@ class StreamsController < ApplicationController
       @stream_preview_and_url_list.push([s.preview_url, s.channel.url])
     end
 
+  #paginate the list for the view
 	@stream_preview_and_url_list = @stream_preview_and_url_list.paginate(page: params[:page], per_page:16)
-  end
-
-private 
-  def logged_in_stream_list number_of_streams
-    #when filtering streams, find how many are ignored
-    filter_counter = get_correct_number_of_streams(number_of_streams)
-
-    temp_filter_stream_list = []
-    #get current user stream list
-    user = User.find(current_user)
-    @user_game_filter = user.games
-    @user_game_filter = @user_game_filter.collect{|x| x.strip.chomp}
-    
-    @streams.all(limit:number_of_streams).each do |stream|
-      unless @user_game_filter.include?(stream.game_name)
-        temp_filter_stream_list.push(stream.channel.name)
-      end 
-    end
-    return temp_filter_stream_list
-  end
-
-  def get_correct_number_of_streams number_of_streams
-    count = 0
-    @streams.all(limit:number_of_streams).each do |stream|
-      if @user_game_filter.include?(stream.game_name)
-        count = filter_counter + 1
-      end 
-    end
-    return count
   end
 end
