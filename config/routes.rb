@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   get 'streams/index'
   root 'streams#index'
-  get '*path' => redirect('/')
+  # get '*path' => redirect('/')
+  match 'streams/embed' => 'streams#embed', :via => [:get], :as => :stream_embed
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -12,8 +12,8 @@ body { background-color:#262626;}
 <%= will_paginate @stream_list%>
 <p class="all" align="center"> 
 	<tr>
-	<% @stream_list.each do |stream_preview, stream_url| %>
-		<%= link_to image_tag("#{stream_preview}"), stream_url %>
+	<% @stream_list.each do |stream_preview, stream_name| %>
+		<%= link_to image_tag("#{stream_preview}"), stream_embed_path(:stream_name => stream_name) %>
 	<% end %>
 	</tr>
 </p>
