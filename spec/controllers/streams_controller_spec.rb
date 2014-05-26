@@ -23,11 +23,11 @@ describe StreamsController do
 	    	assigns(:stream_list).length.should eq(16)
 	    end
 
-	    it 'user logs in with a popular game preference, and 16 streams still show' do
-	    	test = User.create(email: "test@abc.com", password: "abc", games:["League of Legends"])
+	    it 'user logs in with a popular game preference, and 20 streams still show' do
+	    	test = User.create(email: "test@abc.com", password: "abc", games:["League of Legends"], number_of_streams_per_page: 20, number_of_stream_pages: 1)
 	    	sign_in :user, test
 	    	get :index
-	    	assigns(:stream_list).length.should eq(16)
+	    	assigns(:stream_list).length.should eq(20)
 	    end
     end
 end
