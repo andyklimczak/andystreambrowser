@@ -1,13 +1,13 @@
 class StreamsController < ApplicationController
   require 'will_paginate/array'
   def index
-    number_of_streams = 64
+    number_of_streams = 48
     @stream_list = []
 
     #get unfiltered streams for non logged in user
     unless user_signed_in?
       Twitch.streams.all(limit:number_of_streams) do |stream|
-        @stream_list.push([stream.preview_url, stream.channel.name])
+        @stream_list.push([stream.preview_url, stream.channel.name, stream.game_name])
       end
     #use User preferences and get a filtered list of streams
     else
@@ -16,7 +16,7 @@ class StreamsController < ApplicationController
       #go through top streams, adding streams to the list only if they aren't filtered by the user
       Twitch.streams.all(limit:number_of_streams*5) do |stream|
         unless user_filter.include?(stream.game_name)
-          @stream_list.push([stream.preview_url, stream.channel])
+          @stream_list.push([stream.preview_url, stream.channel.name, stream.game_name])
         end
         break if @stream_list.length >= number_of_streams #limit the total number of streams to the list
       end

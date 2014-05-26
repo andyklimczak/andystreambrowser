@@ -1,22 +1,30 @@
+<head>
 <style>
 * { font-family:sans-serif;}
 .box { padding: 10px; border:10px; margin:50px; background:#F1F1F1;}
 hr { border-color:#6441A5;border-collapse: collapse;}
 body { background-color:#262626;}
+.image_and_text {display:inline-block;}
 </style>
+</head>
 <%= render 'layouts/header' %>
 <body>
 <div class="box img-rounded">
 <h1 align="center">Andy's Stream Browser</h1> 
 <hr color=#6441A5>
 <%= will_paginate @stream_list%>
-<p class="all" align="center"> 
-	<tr>
-	<% @stream_list.each do |stream_preview, stream_name| %>
+<div align="center">
+	<% @stream_list.each do |stream_preview, stream_name, stream_game_name| %>
+		<div class="image_and_text">
+		<div>
 		<%= link_to image_tag("#{stream_preview}"), stream_embed_path(:stream_name => stream_name) %>
+		</div>
+		<div align="left">
+		<small><%= stream_game_name %> | <%= stream_name %></small>
+		</div>
+		</div>
 	<% end %>
-	</tr>
-</p>
+</div>
 <%= will_paginate @stream_list%>
 <hr color=#6441A5>
 </div>
