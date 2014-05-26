@@ -34,7 +34,7 @@ I have two simple set of tests (spec/controllers/streams_controller_spec.rb & sp
 
 # bugs
 
-* Main page loads really, really slow. I think it's because of the number of images though?
+* ~~Main page loads really, really slow. I think it's because of the number of images though?~~ loads a bit faster now 
 
 # todo
 
