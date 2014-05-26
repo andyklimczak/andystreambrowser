@@ -39,6 +39,17 @@ body { background-color:#262626;}
   <%= f.select :games, game_list, {}, {:multiple => true, :size => 12, class:"form-control" } %>
   </p></div> 
 
+    <div class="number_of_streams_per_page">
+  <p><%= f.label :number_of_streams_per_page%><br />
+  <%= f.select :number_of_streams_per_page, 8..100,{}, {class:"form-control"} %>
+  </p></div>
+
+
+  <div class="number_of_stream_pages">
+  <p><%= f.label :number_of_stream_pages%><br />
+  <%= f.select :number_of_stream_pages, 1..20, {}, class:"form-control" %>
+  </p></div>
+
   <div><%= f.submit "Update", class: "btn btn-success" %></div>
 <% end %>
 

@@ -34,6 +34,17 @@ body { background-color:#262626;}
   </p>
   </div>
 
+  <div class="number_of_streams_per_page">
+  <p><%= f.label :number_of_streams_per_page%><br />
+  <%= f.select :number_of_streams_per_page, 8..100,{:selected => 16 }, {class:"form-control"} %>
+  </p></div>
+
+
+  <div class="number_of_stream_pages">
+  <p><%= f.label :number_of_stream_pages%><br />
+  <%= f.select :number_of_stream_pages, 1..20, {:selected => 3}, class:"form-control" %>
+  </p></div>
+
  <br /> <div><%= f.submit "Sign up", :class =>"btn btn-success" %></div>
 <% end %>
 <hr color=#6441A5>
