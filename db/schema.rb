@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526200412) do
+ActiveRecord::Schema.define(version: 20140529140021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                      default: "", null: false
@@ -29,7 +40,6 @@ ActiveRecord::Schema.define(version: 20140526200412) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "games"
     t.integer  "number_of_streams_per_page"
     t.integer  "number_of_stream_pages"
   end

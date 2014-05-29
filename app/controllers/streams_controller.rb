@@ -13,7 +13,8 @@ class StreamsController < ApplicationController
     #use User preferences and get a filtered list of streams
     else
       #get the user's preferences
-      user_filter = User.find(current_user).games.collect{|x| x.strip.chomp}
+      user_filter = User.find(current_user).games
+      user_filter = user_filter.map{|x| x.name}
       user_streams_per_page = User.find(current_user).number_of_streams_per_page
       user_stream_pages = User.find(current_user).number_of_stream_pages
       #go through top streams, adding streams to the list only if they aren't filtered by the user

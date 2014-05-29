@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#used to drop database if ObjectInUse ERROR
+#sudo service postgresql restart
+
+Twitch.games.top(limit:100) do |game|
+	Game.create name: game.name
+end

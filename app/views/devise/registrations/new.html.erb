@@ -25,12 +25,8 @@ body { background-color:#262626;}
 
 	<div class="game_preferences">
     <p><%= f.label :games %> <strong>Filter</strong><small> (hold ctrl to select multiple)</small><br />
-  <% game_list = [] %>
-  <% Twitch.games.top(limit:50).each do |game| %>
-    <% game_list.push(game.name) %>
-  <% end %>
-  <% game_list.sort! %>
-  <%= f.select :games, game_list, {}, {:multiple => true, :size => 12, class:"form-control" } %>
+  <%=collection_select :user, :game_ids, Game.all.sort{|a,b| a.name <=> b.name}, :id, :name, {}, {:multiple => true, :size => 12} %>
+
   </p>
   </div>
 

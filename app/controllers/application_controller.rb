@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, {games: []}, :number_of_streams_per_page, :number_of_stream_pages )}
-  	devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:email, :password, :password_confirmation, :current_password, {games: []}, :number_of_streams_per_page, :number_of_stream_pages )}
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, {game_ids: []}, :number_of_streams_per_page, :number_of_stream_pages )}
+  	devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:email, :password, :password_confirmation, :current_password, {game_ids: []},:number_of_streams_per_page, :number_of_stream_pages )}
   end
 
 end
