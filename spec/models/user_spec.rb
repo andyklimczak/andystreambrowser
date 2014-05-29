@@ -11,13 +11,10 @@ describe User do
 	end
 
 	it 'should be a valid user without any game preferences' do
-		User.create(email: "test@test1.com",
-					password: "12345678").should be_valid
+		test = User.create(email: "test@test1.com",password: "12345678")
+		game1 = Game.create name:"League of Legends"
+		test.games << game1
+		test.should be_valid
 	end
 
-	it 'be valid user with game preferences' do
-		User.create(email: "test@test1.com",
-					password: "12345678",
-					games: ["League of Legends", "Dota 2"]).should be_valid
-	end
 end
